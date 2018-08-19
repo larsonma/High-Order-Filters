@@ -1,0 +1,52 @@
+*******************************************************************
+* Filename: Prelab1.cir
+* Author: Mitchell Larson <larsonma@msoe.edu>
+* Date: May 8, 2018
+* Provides:
+*	- Signal conditioning circiut that ranges a [-400:400]mV signal to
+*	- a [-4000:4000]mV signal using an LM741 opamp, while providing
+*	- bandpass filtering with cutoff frequencies of 100 Hz and 15 kHz
+*	- An input buffer has been used to isolate the input from the output 
+*******************************************************************
+
+*** Including the opamp library ***
+
+.lib "opamp.lib"
+
+*** Circuit Description ***
+*** Simulation technique: time domain at 1K [0:400]mV ***
+
+*** Power Supplies ***
+VCC+ 11 0 DC 5.0
+VCC- 12 0 DC -5.0
+
+*** Input voltage ***
+VS 1 0 AC 100m 0.0
+
+*** Resistors ***
+R1 4 0 2.2K
+R2 3 5 1.1K
+R3 5 6 1.0K
+R4 6 7 1.0K
+R5 9 10 33K
+R6 10 0 1.8K
+
+*** Capacitors ***
+C1 2 3 1U
+C2 3 4 1U
+C3 6 8 15n
+C4 7 0 7.5n
+
+*** op-amp ***
+X1 1 2 11 12 2 LM741
+X2 4 5 11 12 5 LM741
+X3 7 8 11 12 8 LM741
+X4 8 10 11 12 9 LM741
+
+*** commands to spice ***
+*** simulate two periods ***
+
+.AC LIN 100000 1 1000K
+.PROBE
+
+.End

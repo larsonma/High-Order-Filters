@@ -1,0 +1,22 @@
+
+.lib "opamp.lib"
+
+*** Circuit Description ***
+*** Simulation technique: time domain at 1K [0:400]mV ***
+
+*** Power Supplies ***
+VCC+ 11 0 DC 5.0
+VCC- 12 0 DC -5.0
+
+*** Input voltage ***
+VS 1 0 SIN(0, 400m, 7K)
+
+R1 2 3 10K
+R2 3 0 1.8K
+
+X1 1 3 11 12 2 LM741
+
+.TRAN 0.0001 0.286m
+.PROBE
+
+.End
